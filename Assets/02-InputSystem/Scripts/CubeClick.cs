@@ -1,20 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CubeClick : MonoBehaviour
+namespace PlayGround_02
 {
-    private Material _material;
-
-    private void Awake()
+    public class CubeClick : MonoBehaviour
     {
-        _material = GetComponent<MeshRenderer>().material;
-    }
+        private Material _material;
 
-    // This function won't be invoked if the value of "Active Input Handling"
-    // in the Player Settings is not "Both" when Input System is activated.
-    private void OnMouseDown()
-    {
-        _material.color = Random.ColorHSV();
+        private void Awake()
+        {
+            _material = GetComponent<MeshRenderer>().material;
+        }
+
+        // This function won't be invoked if the value of "Active Input Handling"
+        // in the Player Settings is not "Both" when Input System is activated.
+        private void OnMouseDown()
+        {
+            _material.color = Random.ColorHSV();
+        }
     }
 }
