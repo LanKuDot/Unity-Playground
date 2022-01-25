@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace PlayGround_05
 {
+    /// <summary>
+    /// The base class of the enemy
+    /// </summary>
     public class Enemy : Character
     {
         [SerializeField]
@@ -27,6 +30,9 @@ namespace PlayGround_05
             _isFiring = false;
         }
 
+        /// <summary>
+        /// The coroutine for controlling the firing actions
+        /// </summary>
         private IEnumerator FireCoroutine()
         {
             while (_isFiring) {
@@ -41,6 +47,9 @@ namespace PlayGround_05
         }
     }
 
+    /// <summary>
+    /// The action for firing a bullet
+    /// </summary>
     [Serializable]
     public class FireAction
     {

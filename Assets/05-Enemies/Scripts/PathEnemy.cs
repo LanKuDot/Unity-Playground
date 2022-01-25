@@ -32,6 +32,9 @@ namespace PlayGround_05
             Move(_movingVelocity * Time.deltaTime * _movingVector);
         }
 
+        /// <summary>
+        /// Set up the next target point
+        /// </summary>
         private void SetNextPoint()
         {
             _currentIndex =

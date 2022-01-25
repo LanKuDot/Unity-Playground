@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace PlayGround_05
 {
+    /// <summary>
+    /// The base class of the character
+    /// </summary>
     [RequireComponent(typeof(CharacterController))]
     public class Character : MonoBehaviour
     {

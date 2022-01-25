@@ -22,6 +22,10 @@ namespace PlayGround_05
             _rigidbody.isKinematic = true;
         }
 
+        /// <summary>
+        /// Fire the bullet along the specified direction
+        /// </summary>
+        /// <param name="direction">The moving direction in the world space</param>
         public void Fire(Vector3 direction)
         {
             transform.forward = direction;

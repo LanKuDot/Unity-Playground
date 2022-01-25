@@ -24,6 +24,9 @@ namespace PlayGround_05
             Look(deltaDegree);
         }
 
+        /// <summary>
+        /// Get the moving vector towards the target
+        /// </summary>
         private Vector3 GetMovingVector()
         {
             var targetVector = _target.position - transform.position;
@@ -31,6 +34,9 @@ namespace PlayGround_05
             return targetVector.normalized;
         }
 
+        /// <summary>
+        /// Get the delta degree to rotate to face the target
+        /// </summary>
         private float GetRotationDegree()
         {
             var curFacing = transform.forward;
