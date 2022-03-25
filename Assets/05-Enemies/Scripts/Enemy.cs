@@ -30,6 +30,13 @@ namespace PlayGround_05
             _isFiring = false;
         }
 
+        protected void OnTriggerEnter(Collider other)
+        {
+            // Added in PlayGround_06
+            if (other.CompareTag("Bullet"))
+                Debug.Log("Hit by the player");
+        }
+
         /// <summary>
         /// The coroutine for controlling the firing actions
         /// </summary>

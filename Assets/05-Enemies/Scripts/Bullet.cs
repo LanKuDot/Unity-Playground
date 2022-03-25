@@ -33,6 +33,13 @@ namespace PlayGround_05
             StartCoroutine(LiveTimeCountdown());
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Character")
+                || other.CompareTag("Bullet"))
+                ObjectPool.Instance.ReturnObject(gameObject);
+        }
+
         private void FixedUpdate()
         {
             var nextPosition =
