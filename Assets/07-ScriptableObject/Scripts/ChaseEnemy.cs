@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 
-namespace PlayGround_05
+namespace PlayGround_07
 {
     public class ChaseEnemy : Enemy
     {
         [SerializeField]
         private Transform _target;
         [SerializeField]
-        private float _movingVelocity;
-        [SerializeField]
-        private float _rotatingVelocity;
+        private ChaseEnemyData _data;
+
+        private void Awake()
+        {
+            enemyData = _data;
+        }
 
         private void FixedUpdate()
         {
-            Move(_movingVelocity * Time.deltaTime * GetMovingVector());
+            Move(_data.movingVelocity * Time.deltaTime * GetMovingVector());
 
             var deltaDegree = GetRotationDegree();
-            var maxDegree = _rotatingVelocity * Time.deltaTime;
+            var maxDegree = _data.rotatingVelocity * Time.deltaTime;
             deltaDegree =
                 Mathf.Min(Mathf.Abs(deltaDegree), maxDegree)
                 * Mathf.Sign(deltaDegree);
