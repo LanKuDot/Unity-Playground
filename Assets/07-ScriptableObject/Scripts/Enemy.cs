@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using PlayGround_05;
 using UnityEngine;
 
@@ -13,7 +12,8 @@ namespace PlayGround_07
 
         protected void Start()
         {
-            if (enemyData.fireActions.Length == 0)
+            if (enemyData == null || 
+                enemyData.fireActions.Length == 0)
                 return;
 
             _isFiring = true;
@@ -27,7 +27,6 @@ namespace PlayGround_07
 
         protected void OnTriggerEnter(Collider other)
         {
-            // Added in PlayGround_06
             if (other.CompareTag("Bullet"))
                 Debug.Log("Hit by the player");
         }

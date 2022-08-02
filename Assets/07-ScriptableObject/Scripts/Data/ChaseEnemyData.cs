@@ -4,8 +4,7 @@ namespace PlayGround_07
 {
     [CreateAssetMenu(
         fileName = "ChaseEnemyData",
-        menuName = "Data/Chase Enemy",
-        order = 18)]
+        menuName = "Data/Chase Enemy")]
     public class ChaseEnemyData : EnemyData
     {
         [SerializeField]
