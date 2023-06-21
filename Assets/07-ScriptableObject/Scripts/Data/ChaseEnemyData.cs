@@ -14,5 +14,19 @@ namespace PlayGround_07
 
         public float movingVelocity => _movingVelocity;
         public float rotatingVelocity => _rotatingVelocity;
+
+#if UNITY_EDITOR
+        public string GetSimpleSceneDisplayInfo()
+        {
+            return name;
+        }
+
+        public string GetSceneDisplayInfo()
+        {
+            return $"{name}\n"
+                   + $"Moving Velocity: {_movingVelocity}\n"
+                   + $"Rotating Velocity: {_rotatingVelocity}";
+        }
+#endif
     }
 }

@@ -9,6 +9,10 @@ namespace PlayGround_07
         [SerializeField]
         private ChaseEnemyData _data;
 
+#if UNITY_EDITOR
+        public ChaseEnemyData Data => _data;
+#endif
+
         private void Awake()
         {
             enemyData = _data;
