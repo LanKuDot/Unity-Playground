@@ -3,46 +3,49 @@ using UnityEngine;
 
 namespace PlayGround_09.Editor
 {
-    [CustomEditor(typeof(Trap))]
-    public class TrapEditor : UnityEditor.Editor
+[CustomEditor(typeof(Trap))]
+public class TrapEditor : UnityEditor.Editor
+{
+    [DrawGizmo(GizmoType.Selected)]
+    private static void DrawGizmos(Trap trap, GizmoType gizmoType)
     {
-        [DrawGizmo(GizmoType.Active)]
-        private static void DrawGizmos(Trap trap, GizmoType gizmoType)
+        var textStyle =
+            new GUIStyle {
+                normal = { textColor = Color.black }
+            };
+
+        var trapTransform = trap.transform;
+        var trapPosition = trapTransform.position;
+        var detectionDistance = trap.DetectionDistance;
+
+        Handles.Label(
+            trapPosition + Vector3.right * (detectionDistance + 0.5f),
+            $"Distance: {detectionDistance:F2}",
+            textStyle);
+
+        var color = GetColor(trap.Color);
+        if (trap.ShowSolidDisc)
         {
-            var textStyle =
-                new GUIStyle {
-                    normal = { textColor = Color.black }
-                };
-
-            var trapTransform = trap.transform;
-            var detectionDistance = trap.DetectionDistance;
-
-            Handles.Label(
-                trapTransform.position + Vector3.right * (detectionDistance + 0.5f),
-                $"{detectionDistance:F2}",
-                textStyle);
+            using (new Handles.DrawingScope(new Color(color.r, color.g, color.b, 0.3f)))
+                Handles.DrawSolidDisc(trapPosition, Vector3.up, detectionDistance);
         }
-
-        private void OnSceneGUI()
+        else
         {
-            var trap = (Trap)target;
-            var trapTransform = trap.transform;
-
-            EditorGUI.BeginChangeCheck();
-
-            float detectionDistance;
-            using (new Handles.DrawingScope(Color.cyan)) {
-                detectionDistance =
-                    Handles.RadiusHandle(
-                        Quaternion.identity,
-                        trapTransform.position,
-                        trap.DetectionDistance);
-            }
-
-            if (EditorGUI.EndChangeCheck()) {
-                Undo.RecordObject(target, "Change detection distance");
-                trap.DetectionDistance = detectionDistance;
-            }
+            using (new Handles.DrawingScope(color))
+                Handles.DrawWireDisc(trapPosition, Vector3.up, detectionDistance, 5);
         }
     }
+
+    private static Color GetColor(Trap.ShowingColor showingColor)
+    {
+        return showingColor switch
+        {
+            Trap.ShowingColor.X => Handles.xAxisColor,
+            Trap.ShowingColor.Y => Handles.yAxisColor,
+            Trap.ShowingColor.Z => Handles.zAxisColor,
+            Trap.ShowingColor.Selected => Handles.selectedColor,
+            _ => Color.white,
+        };
+    }
+}
 }
